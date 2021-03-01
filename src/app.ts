@@ -9,7 +9,7 @@ const isSSR = typeof window === "undefined";
 
 
 
-export default function buildApp() {
+export default () => {
     const app = (isSSR ? createSSRApp(App) : createApp(App));
   
     app.use(router)

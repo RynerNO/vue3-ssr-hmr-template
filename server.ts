@@ -1,12 +1,14 @@
 
 
-import express from "express";
+import express, { Router } from "express";
 import path from "path";
 import { renderToString } from "@vue/server-renderer";
 import serialize from "serialize-javascript";
 import  manifest from "./dist/ssr-manifest.json";
 import fs from "fs";
 import dotenv from "dotenv";
+import { App } from "vue";
+import { Store } from "vuex";
 
 dotenv.config()
 
@@ -14,7 +16,8 @@ const server = express();
 
 
 const appPath = path.join(process.cwd(), "dist", manifest["app.js"]);
-let createApp: any;
+
+let createApp: { default: (url: string) => { app: App<Element>, store: Store<any>, router: Router }};
 
 server.use("/assets", express.static(path.join(process.cwd(), "dist", "assets")));
 server.use("/js", express.static(path.join(process.cwd(), "dist", "js")));
