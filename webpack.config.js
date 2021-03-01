@@ -1,21 +1,21 @@
 // webpack config
-const WebpackBar = require('webpackbar');
+const WebpackBar = require("webpackbar");
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const { VueLoaderPlugin } = require('vue-loader');
-const { merge } = require('webpack-merge');
-const dotenv = require('dotenv')
+const { VueLoaderPlugin } = require("vue-loader");
+const { merge } = require("webpack-merge");
+const dotenv = require("dotenv")
 dotenv.config()
 
 
 let config = {
-  mode: (process.env.PRODUCTION) ? 'production' : 'development',
+  mode: (process.env.PRODUCTION) ? "production" : "development",
   module: {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        use: "vue-loader"
       },
       {
         test: /\.js$/,
@@ -41,7 +41,7 @@ let config = {
         oneOf: [
           {
             resourceQuery: /^\?vue/,
-            use: ['pug-plain-loader']
+            use: ["pug-plain-loader"]
           }
         ]
       },
@@ -49,32 +49,32 @@ let config = {
         test: /\.sass$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { importLoaders: 1} },
-          { loader: 'postcss-loader'}
+          { loader: "css-loader", options: { importLoaders: 1} },
+          { loader: "postcss-loader"}
         ]
       },
       {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader'
+          "css-loader"
         ]
       },
       {
         test: /\.(eot|woff|woff2|ttf|jpg|png|svg)([\?]?.*)$/,
         use: {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
-            name: 'assets/[hash].[ext]',
+            name: "assets/[hash].[ext]",
           }
       },
       }
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: [".ts", ".js", ".vue", ".json"],
     alias: {
-      'vue': '@vue/runtime-dom'
+      "vue": "@vue/runtime-dom"
     }
   },
   plugins: [

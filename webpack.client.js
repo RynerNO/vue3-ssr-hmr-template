@@ -1,16 +1,16 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.config')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const webpack = require('webpack')
-const dotenv = require('dotenv')
+const { merge } = require("webpack-merge");
+const common = require("./webpack.config")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin")
+const webpack = require("webpack")
+const dotenv = require("dotenv")
 dotenv.config()
 
-const path = require('path')
+const path = require("path")
 let config = {
     entry: {
-        app: './src/client-entry.ts'
+        app: "./src/client-entry.ts"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -19,11 +19,11 @@ let config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-          template: './src/static/index.html',
+          template: "./src/static/index.html",
           filename: "static/index.html",
-          inject: 'body'
+          inject: "body"
         }),
-        new FaviconsWebpackPlugin('./src/static/favicon.ico')
+        new FaviconsWebpackPlugin("./src/static/favicon.ico")
     ]
 }
 
@@ -34,21 +34,21 @@ if(!process.env.PRODUCTION) {
         },
         plugins: [  
             new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['!ssr-manifest.json', '!assets', '!assets/*', '!index.html', '!js', '!js/*', '*.js'],
-            cleanOnceBeforeBuildPatterns: ['**/*', '*', '!ssr-manifest.json', '!index.html', '!js', '!js/*'],
+            cleanAfterEveryBuildPatterns: ["!ssr-manifest.json", "!assets", "!assets/*", "!index.html", "!js", "!js/*", "*.js"],
+            cleanOnceBeforeBuildPatterns: ["**/*", "*", "!ssr-manifest.json", "!index.html", "!js", "!js/*"],
         }),
         new webpack.HotModuleReplacementPlugin()
         ],
         devServer: {
             writeToDisk: true,
-            contentBase: path.resolve(__dirname, 'dist'),
-            publicPath: 'http://localhost:9999/dist/',
+            contentBase: path.resolve(__dirname, "dist"),
+            publicPath: "http://localhost:9999/dist/",
             hot: true,
             inline: true,
             historyApiFallback: true,
             port: 9999,
             headers: {
-              'Access-Control-Allow-Origin': '*',
+              "Access-Control-Allow-Origin": "*",
             },
           },
     })

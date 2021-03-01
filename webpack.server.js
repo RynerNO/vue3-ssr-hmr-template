@@ -1,15 +1,15 @@
 
-const { merge } = require('webpack-merge');
-const common = require('./webpack.config')
-const WebpackNodeExternals = require('webpack-node-externals')
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const dotenv = require('dotenv')
+const { merge } = require("webpack-merge");
+const common = require("./webpack.config")
+const WebpackNodeExternals = require("webpack-node-externals")
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const dotenv = require("dotenv")
 dotenv.config()
-const path = require('path')
+const path = require("path")
 const config = {
-    target: 'es2017',
+    target: "es2017",
     entry: {
-        app: './src/server-entry.ts'
+        app: "./src/server-entry.ts"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
